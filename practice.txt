@@ -1,0 +1,18 @@
+// app.get('/create', async (req, res)=>{
+// let u= await userModel.create(
+//     {
+//     name:"jaskirat",
+//     email:"jas@gmail",
+//     username:"kittu"
+//     }
+// )});
+// app.get('/read', async (req, res)=>{ 
+// let u= await userModel.find();
+// res.send(u);
+// });
+// app.get('/update', async (req, res)=>{
+// let u= await userModel.findOneAndUpdate({username:"jas"},{username:"jaskirat"},{new:true}
+// )
+// res.send(u);
+
+// })

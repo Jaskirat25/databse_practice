@@ -1,0 +1,13 @@
+const mongoose=require('mongoose');
+
+mongoose.connect('mongodb://localhost:27017/yourdbname', {
+    serverSelectionTimeoutMS: 30000 // Increase timeout to 30 seconds
+  });
+  
+
+const userschema = mongoose.Schema({
+    name: String,
+    email:String,
+    username:String
+})
+module.exports=mongoose.model("user",userschema);
