@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const path=require('path');
+const user=require('./models/user');
 app.use(express.static(path.join(__dirname,'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -9,5 +10,24 @@ app.get('/',(req,res)=>{
 res.render('app');
 
 })
+app.get('/read', async (req,res)=>{
+
+let users = await user.find();
+res.render('read',{users});
+})
+app.post('/create', async (req,res)=>{
+    let{name,email,image}=req.body;
+  let created= await user.create({
+        name,
+        email,
+        image
+ })
+res.redirect('read');
+})
+app.get('/delete/:id', async (req,res)=>{
+
+    let users = await user.findOneAndDelete({_id:req.params.id});
+    res.redirect('/read');
+    })
 
 app.listen(3000);
