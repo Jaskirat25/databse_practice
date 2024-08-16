@@ -29,5 +29,15 @@ app.get('/delete/:id', async (req,res)=>{
     let users = await user.findOneAndDelete({_id:req.params.id});
     res.redirect('/read');
     })
+app.get('/edit/:id', async (req,res)=>{
+
+    let u = await user.findOne({_id:req.params.id});
+    res.render('edit',{u});
+    })
+app.post('/update/:id', async (req,res)=>{
+let{name,email,image}=req.body;
+    let updated = await user.findOneAndUpdate({_id:req.params.id},{name:name,email:email,image:image},{new:true});
+    res.redirect('/read');
+    })
 
 app.listen(3000);
